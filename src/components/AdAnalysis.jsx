@@ -54,17 +54,17 @@ const formatCurrency = (value) => {
 
 const RegularAdsAnalysis = () => {
   return (
-    <div className="w-full max-w-6xl p-4">
-      <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-        <p className="text-sm text-yellow-800">Analysis of ads containing "regular" with $50,000+ spend (Excluding Q4, sale, seasonal)</p>
+    <div className="w-full max-w-6xl p-2 sm:p-4">
+      <div className="mb-4 p-3 sm:p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <p className="text-xs sm:text-sm text-yellow-800">Analysis of ads containing "regular" with $50,000+ spend (Excluding Q4, sale, seasonal)</p>
       </div>
 
       {/* Hit Rate Summary */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        <div className="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
-          <h3 className="text-lg font-semibold text-blue-800">2022 Hit Rate</h3>
-          <p className="text-3xl font-bold text-blue-900">3.1%</p>
-          <p className="text-sm text-blue-600">20 of 655 ads</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
+        <div className="bg-blue-50 p-3 sm:p-4 rounded-lg border-2 border-blue-200">
+          <h3 className="text-base sm:text-lg font-semibold text-blue-800">2022 Hit Rate</h3>
+          <p className="text-2xl sm:text-3xl font-bold text-blue-900">3.1%</p>
+          <p className="text-xs sm:text-sm text-blue-600">20 of 655 ads</p>
         </div>
         <div className="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
           <h3 className="text-lg font-semibold text-blue-800">2023 Hit Rate</h3>
@@ -79,16 +79,16 @@ const RegularAdsAnalysis = () => {
       </div>
       
       {/* Original Chart */}
-      <div className="mb-8">
-        <h3 className="text-xl font-semibold mb-4">Total vs High-Spending Regular Ads</h3>
-        <div className="h-96">
+      <div className="mb-6 sm:mb-8">
+        <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Total vs High-Spending Regular Ads</h3>
+        <div className="h-72 sm:h-96">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
               data={adData}
               margin={{
                 top: 20,
-                right: 30,
-                left: 20,
+                right: 20,
+                left: 0,
                 bottom: 5,
               }}
             >
@@ -174,14 +174,14 @@ const RegularAdsAnalysis = () => {
       </div>
 
       {/* Naming Patterns Analysis */}
-      <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-6">Ad Naming Patterns Analysis</h2>
+      <div className="mt-12 px-4 sm:px-6 lg:px-8">
+        <h2 className="text-xl sm:text-2xl font-bold mb-6">Ad Naming Patterns Analysis</h2>
         
         {/* Top Performing Patterns */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           <div>
-            <h3 className="text-xl font-semibold mb-4">Top Performing Ad Name Patterns</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <h3 className="text-lg sm:text-xl font-semibold mb-4">Top Performing Ad Name Patterns</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="bg-blue-50 p-4 rounded-lg">
                 <h4 className="font-semibold text-blue-800">Place</h4>
                 <p className="text-2xl font-bold text-blue-900">7.2%</p>
@@ -257,9 +257,9 @@ const RegularAdsAnalysis = () => {
           </div>
 
           {/* Other Notable Groups */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-4">Other Notable Groups</h3>
-            <div className="space-y-3">
+          <div className="bg-gray-50 p-4 sm:p-6 rounded-lg">
+            <h3 className="text-base sm:text-lg font-semibold mb-4">Other Notable Groups</h3>
+            <div className="space-y-2 sm:space-y-3 text-sm sm:text-base">
               <p><span className="font-semibold">EPCreative:</span> Largest volume with 1,755 ads, 53 successes (3.0% hit rate)</p>
               <p><span className="font-semibold">Fiddle:</span> Highest average spend per success ({formatCurrency(590538)})</p>
               <p><span className="font-semibold">Creator:</span> 1.9% success rate (3 hits from 160 ads)</p>
@@ -268,9 +268,9 @@ const RegularAdsAnalysis = () => {
           </div>
 
           {/* Top Creators/Concepts */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-4">Top Creators by Volume</h3>
-            <ol className="list-decimal list-inside space-y-2 ml-4">
+          <div className="bg-gray-50 p-4 sm:p-6 rounded-lg">
+            <h3 className="text-base sm:text-lg font-semibold mb-4">Top Creators by Volume</h3>
+            <ol className="list-decimal list-inside space-y-1 sm:space-y-2 ml-2 sm:ml-4 text-sm sm:text-base">
               <li>HackSivanInbar (119 ads)</li>
               <li>Hack (101 standalone ads)</li>
               <li>Hack923 (58 ads)</li>
@@ -281,9 +281,9 @@ const RegularAdsAnalysis = () => {
           </div>
 
           {/* Best Pattern Combinations */}
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-4">Most Successful Pattern Combinations</h3>
-            <ul className="list-disc list-inside space-y-2 ml-4">
+          <div className="bg-gray-50 p-4 sm:p-6 rounded-lg">
+            <h3 className="text-base sm:text-lg font-semibold mb-4">Most Successful Pattern Combinations</h3>
+            <ul className="list-disc list-inside space-y-1 sm:space-y-2 ml-2 sm:ml-4 text-sm sm:text-base">
               <li>Hack + Unbox + Fiddle</li>
               <li>Upside + Place</li>
               <li>EPCreative + Hack + Unbox</li>
