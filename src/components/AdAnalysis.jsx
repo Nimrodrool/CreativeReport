@@ -54,33 +54,31 @@ const formatCurrency = (value) => {
 
 const RegularAdsAnalysis = () => {
   return (
-    <div className="w-full max-w-6xl p-2 sm:p-4">
+    <div className="w-full max-w-6xl mx-auto p-2 sm:p-4">
       <div className="mb-4 p-3 sm:p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-        <p className="text-xs sm:text-sm text-yellow-800">Analysis of ads containing "regular" with $50,000+ spend (Excluding Q4, sale, seasonal)</p>
+        <p className="text-xs sm:text-sm text-yellow-800">
+          Analysis of ads containing "regular" with $50,000+ spend (Excluding Q4, sale, seasonal)
+        </p>
       </div>
 
       {/* Hit Rate Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
-        <div className="bg-blue-50 p-3 sm:p-4 rounded-lg border-2 border-blue-200">
-          <h3 className="text-base sm:text-lg font-semibold text-blue-800">2022 Hit Rate</h3>
-          <p className="text-2xl sm:text-3xl font-bold text-blue-900">3.1%</p>
-          <p className="text-xs sm:text-sm text-blue-600">20 of 655 ads</p>
-        </div>
-        <div className="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
-          <h3 className="text-lg font-semibold text-blue-800">2023 Hit Rate</h3>
-          <p className="text-3xl font-bold text-blue-900">4.0%</p>
-          <p className="text-sm text-blue-600">39 of 983 ads</p>
-        </div>
-        <div className="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
-          <h3 className="text-lg font-semibold text-blue-800">2024 Hit Rate</h3>
-          <p className="text-3xl font-bold text-blue-900">1.7%</p>
-          <p className="text-sm text-blue-600">16 of 956 ads</p>
-        </div>
+        {adData.map((data) => (
+          <div key={data.year} className="bg-blue-50 p-3 sm:p-4 rounded-lg border-2 border-blue-200">
+            <h3 className="text-base sm:text-lg font-semibold text-blue-800">{data.year} Hit Rate</h3>
+            <p className="text-2xl sm:text-3xl font-bold text-blue-900">{data.percentage}%</p>
+            <p className="text-xs sm:text-sm text-blue-600">
+              {data.highSpendingAds} of {data.totalAds} ads
+            </p>
+          </div>
+        ))}
       </div>
-      
-      {/* Original Chart */}
+
+      {/* Bar Chart */}
       <div className="mb-6 sm:mb-8">
-        <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Total vs High-Spending Regular Ads</h3>
+        <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">
+          Total vs High-Spending Regular Ads
+        </h3>
         <div className="h-72 sm:h-96">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
@@ -105,191 +103,28 @@ const RegularAdsAnalysis = () => {
         </div>
       </div>
 
-      {/* Top 5 Spenders Analysis */}
-      <div className="mt-8 mb-8">
-        <h3 className="text-xl font-semibold mb-4">Top 5 Regular Ads Analysis</h3>
-        
-        <div className="space-y-8">
-          {/* 2022 */}
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h4 className="text-lg font-semibold mb-2">2022</h4>
-            <p className="text-lg mb-2">Total Spend (Top 5): {formatCurrency(602647.06)}</p>
-            <p className="mb-2 text-sm text-gray-600">Launched: April (5 successful ads), August (3 successful ads), December (3 successful ads), May/July (2 each)</p>
-            <ul className="list-disc pl-5 space-y-1 text-sm">
-              <li>Elisheva Ariel - No Ordinary: {formatCurrency(181505.35)} (December)</li>
-              <li>Elisheva Ariel - No Ordinary: {formatCurrency(110740.01)} (December)</li>
-              <li>UGC Mixed Shahar: {formatCurrency(106207.18)} (October)</li>
-              <li>EPL32-C: {formatCurrency(105077.82)} (August)</li>
-              <li>Sivan Adir - Fill Your Home: {formatCurrency(99116.70)} (November)</li>
-            </ul>
-          </div>
-
-          {/* 2023 */}
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h4 className="text-lg font-semibold mb-2">2023</h4>
-            <p className="text-lg mb-2">Total Spend (Top 5): {formatCurrency(2783064.93)}</p>
-            <p className="mb-2 text-sm text-gray-600">Launched: December (9 successful ads), January (6 successful ads), February (4 successful ads), Multiple months with 3 successful ads</p>
-            <ul className="list-disc pl-5 space-y-1 text-sm">
-              <li>Sivan Inbar - Fiddle Unbox: {formatCurrency(1135672.81)} (March)</li>
-              <li>Basic Compilation 6: {formatCurrency(478477.76)} (August)</li>
-              <li>EIIT - Concept B: {formatCurrency(464335.70)} (July)</li>
-              <li>Sivan Inbar - One Shot: {formatCurrency(453921.49)} (August)</li>
-              <li>Einav's Home - Place: {formatCurrency(250657.17)} (December)</li>
-            </ul>
-          </div>
-
-          {/* 2024 */}
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <h4 className="text-lg font-semibold mb-2">2024</h4>
-            <p className="text-lg mb-2">Total Spend (Top 5): {formatCurrency(1920355.61)}</p>
-            <p className="mb-2 text-sm text-gray-600">Launched: January (3 successful ads), August (3 successful ads), July/September/October (2 each)</p>
-            <ul className="list-disc pl-5 space-y-1 text-sm">
-              <li>No Ordinary Dup - Upside: {formatCurrency(667847.59)} (January)</li>
-              <li>Dan Fiddle - One Plant: {formatCurrency(523688.14)} (March)</li>
-              <li>Upside Kid - How: {formatCurrency(276809.18)} (August)</li>
-              <li>Hattie Cooler - Water Short: {formatCurrency(248629.61)} (May)</li>
-              <li>Monika Kitchen - Place: {formatCurrency(203381.09)} (April)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
       {/* Quarterly Breakdown */}
       <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-6">Quarterly Performance Breakdown</h2>
-        {[2022, 2023, 2024].map(year => (
+        <h2 className="text-xl sm:text-2xl font-bold mb-6">Quarterly Performance Breakdown</h2>
+        {[2022, 2023, 2024].map((year) => (
           <div key={year} className="mb-8">
-            <h3 className="text-xl font-semibold mb-4">{year} Quarterly Performance</h3>
-            <div className="grid grid-cols-4 gap-4">
+            <h3 className="text-lg sm:text-xl font-semibold mb-4">{year} Quarterly Performance</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
               {quarterlyData[year].map((quarter) => (
-                <div key={quarter.quarter} className="bg-blue-50 p-4 rounded-lg border-2 border-blue-200">
-                  <h4 className="text-lg font-semibold text-blue-800">{quarter.quarter}</h4>
-                  <p className="text-3xl font-bold text-blue-900">{quarter.hitRate}%</p>
-                  <p className="text-sm text-blue-600">{quarter.successfulAds} of {quarter.totalAds} ads</p>
+                <div
+                  key={quarter.quarter}
+                  className="bg-blue-50 p-3 sm:p-4 rounded-lg border-2 border-blue-200"
+                >
+                  <h4 className="text-base sm:text-lg font-semibold text-blue-800">{quarter.quarter}</h4>
+                  <p className="text-2xl sm:text-3xl font-bold text-blue-900">{quarter.hitRate}%</p>
+                  <p className="text-sm text-blue-600">
+                    {quarter.successfulAds} of {quarter.totalAds} ads
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         ))}
-      </div>
-
-      {/* Naming Patterns Analysis */}
-      <div className="mt-12 px-4 sm:px-6 lg:px-8">
-        <h2 className="text-xl sm:text-2xl font-bold mb-6">Ad Naming Patterns Analysis</h2>
-        
-        {/* Top Performing Patterns */}
-        <div className="space-y-6 sm:space-y-8">
-          <div>
-            <h3 className="text-lg sm:text-xl font-semibold mb-4">Top Performing Ad Name Patterns</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800">Place</h4>
-                <p className="text-2xl font-bold text-blue-900">7.2%</p>
-                <p className="text-sm text-blue-600">5 of 69 ads successful</p>
-                <p className="text-sm text-blue-600">Total spend: {formatCurrency(666822)}</p>
-                <div className="mt-2 space-y-1 text-sm">
-                  <p className="font-semibold">Top 5:</p>
-                  <p>1. Einav's Home Place ({formatCurrency(250657)})</p>
-                  <p>2. Monika Kitchen Place ({formatCurrency(203381)})</p>
-                  <p>3. 3 Reasons Place ({formatCurrency(84439)})</p>
-                  <p>4. 3 Reasons Place - V2 ({formatCurrency(78028)})</p>
-                  <p>5. Einav's Home Place - V2 ({formatCurrency(50316)})</p>
-                </div>
-              </div>
-              
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800">Upside</h4>
-                <p className="text-2xl font-bold text-blue-900">6.7%</p>
-                <p className="text-sm text-blue-600">12 of 179 ads successful</p>
-                <p className="text-sm text-blue-600">Total spend: {formatCurrency(2700064)}</p>
-                <div className="mt-2 space-y-1 text-sm">
-                  <p className="font-semibold">Top 5:</p>
-                  <p>1. No Ordinary Dup Upside ({formatCurrency(667848)})</p>
-                  <p>2. EIIT Concept B UpsideDown ({formatCurrency(464336)})</p>
-                  <p>3. Sivan Inbar OneShot UpsideDown ({formatCurrency(453921)})</p>
-                  <p>4. Upside Kid How ({formatCurrency(276809)})</p>
-                  <p>5. Elish A Ton Upside ({formatCurrency(211468)})</p>
-                </div>
-              </div>
-              
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800">Unbox</h4>
-                <p className="text-2xl font-bold text-blue-900">6.1%</p>
-                <p className="text-sm text-blue-600">11 of 181 ads successful</p>
-                <p className="text-sm text-blue-600">Total spend: {formatCurrency(2245454)}</p>
-                <div className="mt-2 space-y-1 text-sm">
-                  <p className="font-semibold">Top 5:</p>
-                  <p>1. Sivan Inbar Fiddle Unbox ({formatCurrency(1135673)})</p>
-                  <p>2. Like a Jungle Unbox ({formatCurrency(203792)})</p>
-                  <p>3. Elisheva Ariel No Ordinary Unbox ({formatCurrency(154559)})</p>
-                  <p>4. Elisheva Ariel No Ordinary Unbox 9:16 ({formatCurrency(151885)})</p>
-                  <p>5. Elisheva Ariel No Ordinary Unbox ({formatCurrency(123320)})</p>
-                </div>
-              </div>
-              
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800">Hack</h4>
-                <p className="text-2xl font-bold text-blue-900">5.2%</p>
-                <p className="text-sm text-blue-600">24 of 460 ads successful</p>
-                <p className="text-sm text-blue-600">Total spend: {formatCurrency(4269448)}</p>
-                <div className="mt-2 space-y-1 text-sm">
-                  <p className="font-semibold">Top 5:</p>
-                  <p>1. Sivan Inbar Fiddle Unbox ({formatCurrency(1135673)})</p>
-                  <p>2. EIIT Concept B UpsideDown ({formatCurrency(464336)})</p>
-                  <p>3. Sivan Inbar OneShot UpsideDown ({formatCurrency(453921)})</p>
-                  <p>4. Einav's Home Place ({formatCurrency(250657)})</p>
-                  <p>5. Elisheva Ariel No Ordinary ({formatCurrency(181505)})</p>
-                </div>
-              </div>
-              
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <h4 className="font-semibold text-blue-800">Compilation</h4>
-                <p className="text-2xl font-bold text-blue-900">5.1%</p>
-                <p className="text-sm text-blue-600">2 of 39 ads successful</p>
-                <p className="text-sm text-blue-600">Total spend: {formatCurrency(712167)}</p>
-                <div className="mt-2 space-y-1 text-sm">
-                  <p className="font-semibold">Top 2:</p>
-                  <p>1. Basic Compilation 6 ({formatCurrency(478478)})</p>
-                  <p>2. Basic Compilation 3 ({formatCurrency(233689)})</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Other Notable Groups */}
-          <div className="bg-gray-50 p-4 sm:p-6 rounded-lg">
-            <h3 className="text-base sm:text-lg font-semibold mb-4">Other Notable Groups</h3>
-            <div className="space-y-2 sm:space-y-3 text-sm sm:text-base">
-              <p><span className="font-semibold">EPCreative:</span> Largest volume with 1,755 ads, 53 successes (3.0% hit rate)</p>
-              <p><span className="font-semibold">Fiddle:</span> Highest average spend per success ({formatCurrency(590538)})</p>
-              <p><span className="font-semibold">Creator:</span> 1.9% success rate (3 hits from 160 ads)</p>
-              <p><span className="font-semibold">UGC:</span> 2.2% success rate (2 hits from 89 attempts)</p>
-            </div>
-          </div>
-
-          {/* Top Creators/Concepts */}
-          <div className="bg-gray-50 p-4 sm:p-6 rounded-lg">
-            <h3 className="text-base sm:text-lg font-semibold mb-4">Top Creators by Volume</h3>
-            <ol className="list-decimal list-inside space-y-1 sm:space-y-2 ml-2 sm:ml-4 text-sm sm:text-base">
-              <li>HackSivanInbar (119 ads)</li>
-              <li>Hack (101 standalone ads)</li>
-              <li>Hack923 (58 ads)</li>
-              <li>HackSivanAdir (44 ads)</li>
-              <li>HackElishevaAriel (41 ads)</li>
-              <li>NRTV (40 ads)</li>
-            </ol>
-          </div>
-
-          {/* Best Pattern Combinations */}
-          <div className="bg-gray-50 p-4 sm:p-6 rounded-lg">
-            <h3 className="text-base sm:text-lg font-semibold mb-4">Most Successful Pattern Combinations</h3>
-            <ul className="list-disc list-inside space-y-1 sm:space-y-2 ml-2 sm:ml-4 text-sm sm:text-base">
-              <li>Hack + Unbox + Fiddle</li>
-              <li>Upside + Place</li>
-              <li>EPCreative + Hack + Unbox</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </div>
   );
